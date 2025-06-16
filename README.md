@@ -27,11 +27,11 @@ This repository contains my solutions to various problems from [LeetCode](https:
 
 | Difficulty | Solved |
 |------------|--------|
-| Easy       | XX     |
-| Medium     | XX     |
+| Easy       | 03     |
+| Medium     | 01     |
 | Hard       | XX     |
 
-_Total Problems Solved: **XXX**_
+_Total Problems Solved: **4**_
 
 (You can update this table as you go.)
 
@@ -64,7 +64,7 @@ This is a personal learning repo. However, if you spot any issues or have better
 
 If you want to connect, feel free to reach out:
 
-- GitHub: [your-username](https://github.com/yyyashasviiiii)
+- GitHub: [yyyashasviiiii](https://github.com/yyyashasviiiii)
 
 ---
 
