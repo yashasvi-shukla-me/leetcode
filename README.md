@@ -27,8 +27,8 @@ This repository contains my solutions to various problems from [LeetCode](https:
 
 | Difficulty | Solved |
 |------------|--------|
-| Easy       | 03     |
-| Medium     | 01     |
+| Easy       | 05     |
+| Medium     | 02     |
 | Hard       | XX     |
 
 _Total Problems Solved: **4**_
