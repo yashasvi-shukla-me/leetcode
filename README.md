@@ -31,7 +31,7 @@ This repository contains my solutions to various problems from [LeetCode](https:
 | Medium     | 03     |
 | Hard       | XX     |
 
-_Total Problems Solved: **11**_
+_Total Problems Solved: **16**_
 
 (You can update this table as you go.)
 
