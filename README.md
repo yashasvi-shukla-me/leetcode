@@ -29,9 +29,9 @@ This repository contains my solutions to various problems from [LeetCode](https:
 |------------|--------|
 | Easy       | 11     |
 | Medium     | 11     |
-| Hard       | XX     |
+| Hard       | 01     |
 
-_Total Problems Solved: **22**_
+_Total Problems Solved: **23**_
 
 (You can update this table as you go.)
 
