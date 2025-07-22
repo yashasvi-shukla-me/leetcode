@@ -32,20 +32,22 @@ class Solution:
         return maximum
 
 
-#   Kadane's Algorithm (Optimal Approach)
+#   Modified Kadane's Algorithm
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        max_prod = min_prod = result = nums[0]
+
+        curr_max = curr_min = max_prod = nums[0]
 
         for i in range(1, len(nums)):
+
             num = nums[i]
 
-            prev_max = max_prod
+            if num < 0: # check if it' negative
+                curr_max, curr_min = curr_min, curr_max # multiplying with a negative flips the sign
+            curr_max = max(num, num * curr_max)
+            curr_min = min(num, num * curr_min)
 
-            max_prod = max(num, num * max_prod, num * min_prod)
-            min_prod = min(num, num * prev_max, num * min_prod)
+            max_prod = max(max_prod, curr_max)
 
-            result = max(result, max_prod)
-
-        return result
+        return max_prod   
