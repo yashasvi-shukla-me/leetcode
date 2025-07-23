@@ -39,3 +39,25 @@ class Solution:
         if len(unique) >= 3:
             return unique[2]
         return unique[0]
+
+
+#   Optimal using Three Trackers 
+#   It's In-Place and takes O(1) space
+
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        first = second = third = float('-inf')
+
+        for num in nums:
+            if num in (first, second, third):
+                continue    # skip if it exists
+
+            if num > first:
+                third, second, first = second, first, num   # just swapping
+            elif num > second:
+                third, second = second, num
+            elif num > third:
+                third = num
+
+        return third if third != float('-inf') else first
+        #   in this we check if the len(nums) <= 2, if yes then we return the max i.e first
