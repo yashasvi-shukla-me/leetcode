@@ -38,7 +38,20 @@ class Solution:
                     return [i+1,j+1]
 
 
-#   Using Two Pointers (Best Approach)
+#   Using Hash Map
+#   It uses O(n) space, but we want O(1)
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        saw = {}
+
+        for i, j in enumerate(numbers):
+            if target - j in saw:
+                return [saw[target - j] + 1, i + 1] # added +1 as it's an 1-indexed array
+            saw[j] = i
+
+
+#   Using Two Pointer (Optimal)
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
@@ -47,24 +60,9 @@ class Solution:
 
         while left < right:
             curr_sum = numbers[left] + numbers[right]
-            if numbers[left] + numbers[right] == target:
-                return [left + 1, right + 1]
+            if curr_sum < target:
+                left = left + 1
+            elif curr_sum > target:
+                right = right - 1
             else:
-                if numbers[left] + numbers[right] < target:
-                    left = left + 1
-                else:
-                    right = right - 1
-
-
-#   Using Dictionary (Hash Map)
-#   Not uses constant time
-
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        dictionary = {}
-
-        for i, num in enumerate(numbers):
-            complement = target - num
-            if complement in dictionary:
-                return [dictionary[complement] + 1, i + 1]
-            dictionary[num] = i
+                return [left + 1, right + 1]
