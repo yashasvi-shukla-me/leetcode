@@ -33,20 +33,22 @@ class Solution:
         return maximum     
 
 
-#   Using two pointers
+#   Using Two Pointers
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        maximum = 0
+
         left = 0
         right = len(height) - 1
+        max_area = 0
 
         while left < right:
-            minimum = min(height[left], height[right])
-            maximum = max(maximum, minimum * (right - left))
-            
+            select = min(height[left], height[right])   # selecting the shorter line as water will flow over it
+            max_area = max(max_area, select * (right - left))   # (right - left) because that gives the length of the container
+
             if height[left] < height[right]:
                 left = left + 1
             else:
                 right = right - 1
-        return maximum
+
+        return max_area
