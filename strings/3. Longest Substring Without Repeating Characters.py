@@ -21,37 +21,22 @@ Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 """
 
-#   Brute Force Approach ( O(N^2) )
+#   Brute Force Approach
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        maximum = 0
+        longest = 0
+
         for i in range(len(s)):
-            seen = set()
+            saw = set()
+
             for j in range(i, len(s)):
-                if s[j] in seen:
+                if s[j] in saw:
                     break
-                seen.add(s[j])
-                maximum = max(maximum, j - i + 1)
-        return maximum
+                saw.add(s[j])
+                longest = max(longest, j -i + 1)
 
-
-#   Brute Force Approach
-
-# class Solution:
-#     def lengthOfLongestSubstring(self, s: str) -> int:
-#         longest = 0
-
-#         for i in range(len(s)):
-#             saw = set()
-
-#             for j in range(i, len(s)):
-#                 if s[j] in saw:
-#                     break
-#                 saw.add(s[j])
-#                 longest = max(longest, j -i + 1)
-
-#         return longest
+        return longest
 
 
 #   Sliding Window using HashSet
