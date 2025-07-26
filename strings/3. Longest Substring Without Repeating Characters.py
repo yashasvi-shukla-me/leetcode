@@ -36,13 +36,32 @@ class Solution:
         return maximum
 
 
-#   Sliding Window + HashSet
+#   Brute Force Approach
+
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         longest = 0
+
+#         for i in range(len(s)):
+#             saw = set()
+
+#             for j in range(i, len(s)):
+#                 if s[j] in saw:
+#                     break
+#                 saw.add(s[j])
+#                 longest = max(longest, j -i + 1)
+
+#         return longest
+
+
+#   Sliding Window using HashSet
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        left = 0
-        maximum = 0
+
         window = set()
+        left = 0
+        longest = 0
 
         for right in range(len(s)):
 
@@ -50,23 +69,6 @@ class Solution:
                 window.remove(s[left])
                 left = left + 1
             window.add(s[right])
-            maximum = max(maximum, right - left + 1)
-            
-        return maximum
+            longest = max(longest, right - left + 1)
 
-
-#   Sliding Window + HashMap
-
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        left = 0
-        maximum = 0
-        seen_last = {}  # like {a : 0}
-
-        for right in range(len(s)):
-            if s[right] in seen_last and seen_last[s[right]] >= left:
-                left = seen_last[s[right]] + 1
-            seen_last[s[right]] = right
-            maximum = max(maximum, right - left + 1)
-            
-        return maximum
+        return longest
