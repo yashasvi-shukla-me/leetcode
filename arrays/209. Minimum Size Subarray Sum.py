@@ -21,19 +21,18 @@ Output: 0
 
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        minimum = 999999
+
+        shortest = float('inf')
         left = 0
-        window_sum = 0
+        total = 0
+        n = len(nums)
 
-        for right in range(len(nums)):
-            window_sum = window_sum + nums[right]
+        for right in range(n):
+            total = total + nums[right]
 
-            while window_sum >= target:
-
-                minimum = min(minimum, right - left + 1)
-                window_sum = window_sum - nums[left]
+            while total >= target:
+                shortest = min(shortest, right - left + 1)
+                total = total - nums[left]
                 left = left + 1
 
-        if minimum == 999999:
-            return 0
-        return minimum
+        return 0 if shortest == float('inf') else shortest
