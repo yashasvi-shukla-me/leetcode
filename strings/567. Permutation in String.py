@@ -19,12 +19,13 @@ Output: false
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
+
         if len(s1) > len(s2):
             return False
-        
+
+        left = 0
         s1_count = Counter(s1)
         window = Counter()
-        left = 0
 
         for right in range(len(s2)):
             window[s2[right]] = window[s2[right]] + 1
@@ -34,8 +35,10 @@ class Solution:
                 if window[s2[left]] == 0:
                     del window[s2[left]]
                 left = left + 1
+
             if window == s1_count:
                 return True
+
         return False
     
 #   Another faster method is available using Fixed Sized Array
