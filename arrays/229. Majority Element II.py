@@ -38,9 +38,6 @@ class Solution:
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
 
-        if not nums:
-            return []
-
         count1 = count2 = 0
         candidate1 = candidate2 = None
 
@@ -58,11 +55,12 @@ class Solution:
             else:
                 count1 = count1 - 1
                 count2 = count2 - 1
-            
+
+            # until this step, we find possible candidates
+            # then we check whether actually they occur more than n//3 times
+
         majority = []
-        print(candidate1, candidate2)
-        for i in set([candidate1, candidate2]):
+        for i in {candidate1, candidate2}: # for removing duplicates
             if nums.count(i) > len(nums) // 3:
                 majority.append(i)
-        
         return majority
