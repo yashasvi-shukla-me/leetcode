@@ -31,32 +31,32 @@ Explanation: The only possible triplet sums up to 0.
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
-        res = []
 
-        for i in range(len(nums) - 2):
+        nums.sort()
+        triplets = []
+
+        for i in range(len(nums) - 2): # our first number is nums[i]
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
-            left = i + 1
-            right = len(nums) - 1
+            left, right = i + 1, len(nums) - 1 # next two number of triplets
 
             while left < right:
-                curr_sum = nums[i] + nums[left] + nums[right]
+                total = nums[i] + nums[left] + nums[right]
 
-                if curr_sum < 0:
-                    left += 1
-                elif curr_sum > 0:
-                    right -= 1
+                if total == 0:  # if triplet found add numbers in list
+                    triplets.append([nums[i], nums[left], nums[right]])
+                    left = left + 1
+                    right = right - 1
+
+                    while left < right and nums[left] == nums[left - 1]:
+                        left = left + 1  # checking for duplicates
+                    while left < right and nums[right] == nums[right + 1]:
+                        right = right - 1  # checking for duplicates
+
+                elif total < 0:
+                    left = left + 1
                 else:
-                    res.append([nums[i], nums[left], nums[right]])
+                    right = right - 1
 
-                    while left < right and nums[left] == nums[left + 1]:
-                        left += 1
-                    while left < right and nums[right] == nums[right - 1]:
-                        right -= 1
-
-                    left += 1
-                    right -= 1
-
-        return res
+        return triplets
