@@ -23,26 +23,26 @@ class Solution:
 
 
 #   Using Two Pointers 
-#   Not Three Pointer as (third pointer is for output storage), which isn't counted as extra pointer
 
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
 
+        # array is sorted which helps
+        # pos is for putting values in squares array
+        
         n = len(nums)
-        squares = [0] * n
         left = 0
         right = n - 1
         pos = n - 1
+        squares = [0] * n # array of zeroes
 
         while left <= right:
 
-            if abs(nums[left]) > abs(nums[right]):
+            if abs(nums[left]) > abs(nums[right]): # simple if u think about it
                 squares[pos] = nums[left] ** 2
                 left = left + 1
             else:
                 squares[pos] = nums[right] ** 2
                 right = right - 1
-
             pos = pos - 1
-
         return squares
