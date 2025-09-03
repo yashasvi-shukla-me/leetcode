@@ -25,16 +25,18 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+
         longest = 0
 
         for i in range(len(s)):
+
             saw = set()
 
             for j in range(i, len(s)):
                 if s[j] in saw:
                     break
                 saw.add(s[j])
-                longest = max(longest, j -i + 1)
+                longest = max(longest, j - i + 1) # when we add in saw, increase longest
 
         return longest
 
