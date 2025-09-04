@@ -22,20 +22,19 @@ Output: 0
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
 
-        if k <= 1:  # no elements are less than 1
-            return 0
+        if k <= 1:
+            return 0 # small edge case
 
-        count = 0
-        left = 0
         prod = 1
+        left = 0
+        count = 0
 
         for right in range(len(nums)):
             prod = prod * nums[right]
 
             while prod >= k:
-                prod = prod // nums[left]   # decreasing i.e shrinking the window
+                prod = prod // nums[left] # shrinking the window
                 left = left + 1
-
             count = count + right - left + 1
 
         return count
