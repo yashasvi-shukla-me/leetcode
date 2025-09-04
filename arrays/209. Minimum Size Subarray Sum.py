@@ -22,17 +22,18 @@ Output: 0
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
 
-        shortest = float('inf')
+        minimal = float('inf')
         left = 0
         total = 0
-        n = len(nums)
 
-        for right in range(n):
+        for right in range(len(nums)):
             total = total + nums[right]
-
+            
             while total >= target:
-                shortest = min(shortest, right - left + 1)
+                minimal = min(minimal, right - left + 1)
                 total = total - nums[left]
                 left = left + 1
 
-        return 0 if shortest == float('inf') else shortest
+        # return 0 if there is no such subarray
+        # else return the minimal length
+        return 0 if minimal == float('inf') else minimal
