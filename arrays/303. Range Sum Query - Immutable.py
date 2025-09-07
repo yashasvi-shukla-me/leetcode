@@ -22,7 +22,7 @@ numArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1
 numArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
 """
 
-#   Brute Force Approach
+# Brute Force
 
 class NumArray:
 
@@ -34,7 +34,7 @@ class NumArray:
         return sum(self.nums[left:right+1])
 
 
-#   Usin Prefix Sum
+#   Using Prefix Sum
 
 class NumArray:
 
@@ -45,8 +45,7 @@ class NumArray:
 
 
     def sumRange(self, left: int, right: int) -> int:
-        return self.prefix[right + 1] - self.prefix[left]
-
+        return self.prefix[right+1] - self.prefix[left]
 
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
