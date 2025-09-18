@@ -39,7 +39,7 @@ class Solution:
 
         for start, end in points:
             if start > last_arrow:
-                arrow = arrow + 1
+                arrows = arrows + 1
                 last_arrow = end
 
         return arrows
