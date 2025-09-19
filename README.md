@@ -28,21 +28,16 @@ This repository contains my solutions to various problems from [LeetCode](https:
 | Difficulty | Solved |
 |------------|--------|
 | Easy       | 17     |
-| Medium     | 28    |
+| Medium     | 31    |
 | Hard       | 00     |
 
-_Total Problems Solved: **45**_
-
-(You can update this table as you go.)
+_Total Problems Solved: **48**_
 
 ---
 
 ## 🛠️ Languages Used
 
 - Python
-- C++
-- JavaScript  
-(You can list or remove based on what you use.)
 
 ---
 
