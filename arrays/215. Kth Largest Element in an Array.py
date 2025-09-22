@@ -40,3 +40,37 @@ class Solution:
                 heapq.heappop(heap)
                 
         return heap[0]
+    
+
+#   Using Quickselect (Optimal)
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+
+        k = len(nums) - k
+
+        def quickselect(l, r):
+
+            pivot = nums[random.randint(l, r)]
+            left, right = l, r
+
+            while left <= right:
+
+                while nums[left] < pivot:
+                    left = left + 1
+                while nums[right] > pivot:
+                    right = right - 1
+
+                if left <= right:
+                    nums[left], nums[right] = nums[right], nums[left]
+                    left = left + 1
+                    right = right - 1
+
+            if k <= right:
+                return quickselect(l, right)
+            elif k >= left:
+                return quickselect(left, r)
+            else:
+                return nums[k]
+
+        return quickselect(0, len(nums) - 1)
