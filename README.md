@@ -2,7 +2,6 @@
 
 This repository contains my solutions to various problems from [LeetCode](https://leetcode.com/). I use this space to improve my problem-solving skills, prepare for coding interviews, and keep track of my progress.
 
-
 ## 🗂️ Topics Covered
 
 - Arrays & Strings
@@ -26,12 +25,12 @@ This repository contains my solutions to various problems from [LeetCode](https:
 ## 📈 Progress
 
 | Difficulty | Solved |
-|------------|--------|
+| ---------- | ------ |
 | Easy       | 18     |
-| Medium     | 35    |
+| Medium     | 37     |
 | Hard       | 00     |
 
-_Total Problems Solved: **53**_
+_Total Problems Solved: **55**_
 
 ---
 
