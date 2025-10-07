@@ -35,7 +35,7 @@ class Solution:
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        
+
         res = []
         path = []
         used = [False] * len(nums)
@@ -43,7 +43,7 @@ class Solution:
         def backtrack():
             if len(path) == len(nums):
                 res.append(path[:])
-                return
+                return 
 
             for i in range(len(nums)):
                 if not used[i]:
@@ -54,6 +54,6 @@ class Solution:
 
                     path.pop()
                     used[i] = False
-
+        
         backtrack()
         return res
