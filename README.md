@@ -27,10 +27,10 @@ This repository contains my solutions to various problems from [LeetCode](https:
 | Difficulty | Solved |
 | ---------- | ------ |
 | Easy       | 22     |
-| Medium     | 45     |
+| Medium     | 46     |
 | Hard       | 00     |
 
-_Total Problems Solved: **67**_
+_Total Problems Solved: **68**_
 
 ---
 
