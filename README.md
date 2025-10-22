@@ -26,11 +26,11 @@ This repository contains my solutions to various problems from [LeetCode](https:
 
 | Difficulty | Solved |
 | ---------- | ------ |
-| Easy       | 24     |
+| Easy       | 25     |
 | Medium     | 47     |
 | Hard       | 00     |
 
-_Total Problems Solved: **71**_
+_Total Problems Solved: **72**_
 
 ---
 
