@@ -16,38 +16,23 @@ Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 """
 
-#   Brute Force Approach
-#   Time limit exceeded for large size array
-
-class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        n = len(nums)
-        maximum = nums[0]
-
-        for i in range(n):
-            prod = 1
-            for j in range(i, n):
-                prod = prod * nums[j]
-                maximum = max(prod, maximum)
-        return maximum
-
-
-#   Modified Kadane's Algorithm
+#   Brute Force will result in TLE
+#   We will use
+#   Kadane's like approach
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
 
-        curr_max = curr_min = max_prod = nums[0]
+        curMax = curMin = ans = nums[0]
 
-        for i in range(1, len(nums)):
+        for n in nums[1:]:
 
-            num = nums[i]
+            if n < 0:
+                curMax, curMin = curMin, curMax    # swap if negative
 
-            if num < 0: # check if it' negative
-                curr_max, curr_min = curr_min, curr_max # multiplying with a negative flips the sign
-            curr_max = max(num, num * curr_max)
-            curr_min = min(num, num * curr_min)
+            curMax = max(n, curMax * n)
+            curMin = min(n, curMin * n)
 
-            max_prod = max(max_prod, curr_max)
+            ans = max(ans, curMax)
 
-        return max_prod   
+        return ans        
