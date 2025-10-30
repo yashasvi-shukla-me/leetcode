@@ -16,20 +16,48 @@ Input: nums = [1,1]
 Output: [1,2]
 """
 
-#   Using Sets
+#   Using Set & Sum difference
 
 class Solution:
     def findErrorNums(self, nums: List[int]) -> List[int]:
 
+        # length of nums 
         n = len(nums)
-        nums_set = set()    # empty set
+
+        hashSet = set()
+
+        for i in range(n):
+            if nums[i] not in hashSet:
+                hashSet.add(nums[i])
+            else:
+                dup = nums[i]
+
+        sumOfN = (n * (n + 1)) // 2
+        missing_num = sumOfN - sum(hashSet)
+
+        return [dup, missing_num]
+
+
+#   Using Index Marking
+
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+
+        missing = -1
         dup = -1
 
-        for i in nums:
-            if i in nums_set:
-                dup = i
-            nums_set.add(i)
+        for num in nums:
 
-        total = (n * (n + 1)) // 2  # formula for sum of n numbers
-        left = total - sum(nums_set) # will give the missing number
-        return [dup, left]
+            index = abs(num) - 1
+
+            if nums[index] < 0:
+                dup = abs(num)
+            else:
+                nums[index] = -nums[index]
+                # marking the element at corrsponding index negative
+
+        for i in range(len(nums)):
+            if nums[i] > 0: # remained positive, never seen
+                missing = i + 1
+
+        return [dup, missing]
