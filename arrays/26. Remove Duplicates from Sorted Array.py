@@ -35,26 +35,19 @@ Explanation: Your function should return k = 5, with the first five elements of 
 It does not matter what you leave beyond the returned k (hence they are underscores).
 """
 
-#   Brute Force Using Sets
-#   requires in-place modification with constant space, but this takes O(n)
+#   Brute Force not allowed, as it takes extra space
+#   So for In-place we use
+#   Two Pointer Approach
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        
-        unique = sorted(set(nums))
-        for i in range(len(unique)):
-            nums[i] = unique[i]
-        return len(unique)
 
+        left = 0
 
-#   Using Two Pointers
+        for right in range(len(nums)):
 
-class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        left = 0    # slow pointer
-
-        for right in range(1, len(nums)):
-            if nums[left] != nums[right]:
+            if nums[left] != nums[right]: # check if both are not equal
                 left = left + 1
-                nums[left] = nums[right]    # changing the duplicate place with the unique
-        return left + 1           
+                nums[left] = nums[right]
+        
+        return left + 1     # adding 1 as left starts from 0
