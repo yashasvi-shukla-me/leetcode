@@ -42,20 +42,24 @@ class Solution:
         return c
 
 
-#   Optimal Approach (Prefix Sum, Hash Map)
+#   Brute Force will result in TLE
+#   we will use
+#   HashMap + Prefix Sum
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        count = 0   # maintaining count of subarrays whose sum = k
-        prefix_sum = 0
-        prefix_count = {0: 1}   # keeping the count of each prefix_sum {prefix_sum : count}
+
+        c = 0   # count of subarray whose sum is k
+        prefixSum = 0
+        hashMap = {0: 1}    # { prefixSumValue: frequency }
 
         for num in nums:
-            prefix_sum = prefix_sum + num
 
-            if (prefix_sum - k) in prefix_count:
-                count = count + prefix_count[prefix_sum - k]
-            
-            prefix_count[prefix_sum] = prefix_count.get(prefix_sum, 0) + 1
+            prefixSum = prefixSum + num
 
-        return count
+            if (prefixSum - k) in hashMap:
+                c = c + hashMap[prefixSum - k]
+
+            hashMap[prefixSum] = hashMap.get(prefixSum, 0) + 1
+
+        return c
