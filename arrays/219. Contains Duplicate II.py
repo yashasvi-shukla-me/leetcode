@@ -21,13 +21,32 @@ Output: false
 
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        
-        hash_map = {}
+
+        hashMap = {}
 
         for i in range(len(nums)):
-            num = nums[i]
-            if num in hash_map:
-                if abs(i - hash_map[num]) <= k:
-                    return True
-            hash_map[num] = i
+            if nums[i] in hashMap and i - hashMap[nums[i]] <= k:
+                return True
+            hashMap[nums[i]] = i
+
+        return False
+
+
+#   Sliding Window 
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+
+        window = set()
+
+        for i in range(len(nums)):
+
+            if nums[i] in window:
+                return True
+
+            window.add(nums[i])
+
+            if len(window) > k:
+                window.remove(nums[i - k])
+
         return False
