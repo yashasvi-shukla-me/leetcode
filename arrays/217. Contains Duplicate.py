@@ -50,9 +50,27 @@ class Solution:
         return False  
 
 
-#   One Liner (Set)
+#   Simple but takes O(n) space
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
 
-        return len(nums) != len(set(nums))
+        if len(set(nums)) == len(nums):
+            return False
+
+        return True
+
+
+#   To achieve constant space, time will increase O(n log n), space O(1)
+#   Using sorting
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+
+        nums.sort()
+
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                return True
+
+        return False
