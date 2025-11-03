@@ -8,17 +8,19 @@ class Solution:
                     return [i,j]
 
 
-#   Using Hash Map
+#   HashMap
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        saw = {}
+
+        hashMap = {}
 
         for i in range(len(nums)):
-            diff = target - nums[i]
-            if diff in saw:
-                return [i, saw[diff]]
-            saw[nums[i]] = i
+
+            if target - nums[i] in hashMap:
+                return [i, hashMap[target - nums[i]]]
+            else:
+                hashMap[nums[i]] = i
 
 
 #   Using enumerate() Pythonic way
