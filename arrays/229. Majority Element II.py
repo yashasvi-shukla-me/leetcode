@@ -19,48 +19,50 @@ Output: [1,2]
 
 #   Brute Force will result in TLE
 
-#   Using Counter (Hash Map)
+#   Using Counter
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
 
-        hash_map = Counter(nums)
+        c = Counter(nums)
         majority = []
+        n = len(nums)
 
-        for num, freq in hash_map.items():
-            if freq > len(nums) // 3:
-                majority.append(num)
+        for i in c:
+            if c[i] > n // 3:
+                majority.append(i)
+
         return majority
 
 
-#   Using Boyer-Moore Voting Algo
+#   Extended Boyer-Moore Algorithm
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
 
+        candy1 = candy2 = None
         count1 = count2 = 0
-        candidate1 = candidate2 = None
 
         for num in nums:
-            if num == candidate1:
-                count1 = count1 + 1
-            elif num == candidate2:
-                count2 = count2 + 1
+
+            if num == candy1:
+                count1 += 1
+            elif num == candy2:
+                count2 += 1
             elif count1 == 0:
-                candidate1 = num
-                count1 = 1
+                candy1 = num
+                count1 += 1
             elif count2 == 0:
-                candidate2 = num
-                count2 = 1
+                candy2 = num
+                count2 += 1
             else:
-                count1 = count1 - 1
-                count2 = count2 - 1
+                count1 -= 1
+                count2 -= 1
 
-            # until this step, we find possible candidates
-            # then we check whether actually they occur more than n//3 times
+        result = []
+        if nums.count(candy1) > len(nums) // 3:
+            result.append(candy1)
+        if nums.count(candy2) > len(nums) // 3:
+            result.append(candy2)
 
-        majority = []
-        for i in {candidate1, candidate2}: # for removing duplicates
-            if nums.count(i) > len(nums) // 3:
-                majority.append(i)
-        return majority
+        return result
