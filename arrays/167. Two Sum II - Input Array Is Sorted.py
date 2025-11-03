@@ -38,31 +38,20 @@ class Solution:
                     return [i+1,j+1]
 
 
-#   Using Hash Map
-#   It uses O(n) space, but we want O(1)
+#   HashMap,vhas O(n) time, O(n) space complexity
+#   Two Pointers give O(n) time and O(1) space complexity
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        saw = {}
 
-        for i, j in enumerate(numbers):
-            if target - j in saw:
-                return [saw[target - j] + 1, i + 1] # added +1 as it's an 1-indexed array
-            saw[j] = i
-
-
-#   Using Two Pointer (Optimal)
-
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
         left = 0
         right = len(numbers) - 1
 
         while left < right:
-            curr_sum = numbers[left] + numbers[right]
-            if curr_sum < target:
-                left = left + 1
-            elif curr_sum > target:
-                right = right - 1
-            else:
+
+            if numbers[left] + numbers[right] == target:
                 return [left + 1, right + 1]
+            elif numbers[left] + numbers[right] > target:
+                right -= 1
+            else:
+                left += 1
