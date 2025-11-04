@@ -27,36 +27,41 @@ Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 """
 
-#   Using Two Pointers
+#   Sorting and Two Pointers
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
 
+        result = []
         nums.sort()
-        triplets = []
 
-        for i in range(len(nums) - 2): # our first number is nums[i]
+        for i in range(len(nums) - 2):
+
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
-            left, right = i + 1, len(nums) - 1 # next two number of triplets
+            left = i + 1
+            right = len(nums) - 1
 
             while left < right:
+
                 total = nums[i] + nums[left] + nums[right]
 
-                if total == 0:  # if triplet found add numbers in list
-                    triplets.append([nums[i], nums[left], nums[right]])
+                if total == 0:
+                    result.append([nums[i], nums[left], nums[right]])
+
+                    while left < right and nums[left] == nums[left + 1]:
+                        left = left + 1
+
+                    while left < right and nums[right] == nums[right - 1]:
+                        right = right - 1
+
                     left = left + 1
                     right = right - 1
-
-                    while left < right and nums[left] == nums[left - 1]:
-                        left = left + 1  # checking for duplicates
-                    while left < right and nums[right] == nums[right + 1]:
-                        right = right - 1  # checking for duplicates
 
                 elif total < 0:
                     left = left + 1
                 else:
                     right = right - 1
 
-        return triplets
+        return result
