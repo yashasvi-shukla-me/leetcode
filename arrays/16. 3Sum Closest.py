@@ -18,30 +18,34 @@ Output: 0
 Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
 """
 
-#   Using Two Pointers like in 3Sum
-#   we don't care about duplicates, we need to return the closest sum
+#   Two Pointers Approach
+#   complexity : O(n^2) time | O(log n) space
 
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         
-        close = float('-inf')
         nums.sort()
+        close = nums[0] + nums[1] + nums[2]
 
         for i in range(len(nums) - 2):
-            left, right = i + 1, len(nums) - 1
+
+            left = i + 1
+            right = len(nums) - 1
 
             while left < right:
 
-                curr_sum = nums[i] + nums[left] + nums[right]
+                curSum = nums[i] + nums[left] + nums[right]
 
-                if abs(curr_sum - target) < abs(close - target): 
-                    # checking and storing the closest sum to target
-                    close = curr_sum
+                if abs(curSum - target) < abs(close - target):
+                    close = curSum
 
-                if curr_sum < target:
+                if curSum < target:
                     left = left + 1
-                elif curr_sum > target:
+
+                elif curSum > target:
                     right = right - 1
+
                 else:
                     return target
+
         return close
