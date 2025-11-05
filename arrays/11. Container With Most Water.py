@@ -33,24 +33,23 @@ class Solution:
         return maximum     
 
 
-#   Using Two Pointers
+#   Two Pointers
+#   Complexity : O(n), Space : O(1)
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
 
-        max_water = 0
         left = 0
         right = len(height) - 1
+        maxWater = 0
 
         while left < right:
-            # selecting shorter height aong left & right, 
-            # then multiply with the distance between them to get area
-            
-            max_water = max(max_water, min(height[left], height[right]) * (right - left))
-            
+
+            maxWater = max(maxWater, min(height[left], height[right]) * (right - left))
+
             if height[left] < height[right]:
                 left = left + 1
             else:
                 right = right - 1
 
-        return max_water
+        return maxWater
