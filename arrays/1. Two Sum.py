@@ -33,3 +33,7 @@ class Solution:
             if target - value in saw:
                 return [saw[target - value], index]
             saw[value] = index
+
+#   Two Pointer Approach (Requires Sorted Array)
+#   Note: This approach won't return original indices if the array is not sorted.
+#   We cannot use this approach directly for the original problem without additional steps.
