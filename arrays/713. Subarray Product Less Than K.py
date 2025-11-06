@@ -17,24 +17,27 @@ Output: 0
 
 #   Here the elements of nums are postive and >= 1, so no problem of product 0 or handling (-)ves
 
-#   Using Sliding Window
+#   Sliding Window
 
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
 
         if k <= 1:
-            return 0 # small edge case
+            return 0
 
-        prod = 1
         left = 0
-        count = 0
+        c = 0
+        prod = 1
 
         for right in range(len(nums)):
+
             prod = prod * nums[right]
 
             while prod >= k:
-                prod = prod // nums[left] # shrinking the window
-                left = left + 1
-            count = count + right - left + 1
 
-        return count
+                prod = prod // nums[left]
+                left += 1
+
+            c = c + right - left + 1
+        
+        return c
