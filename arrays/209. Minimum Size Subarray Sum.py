@@ -17,23 +17,24 @@ Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
 """
 
-#   Sliding Window (Optimal)
+#   Sliding Window Approach
+#   Time Complexity: O(n), Space Complexity: O(1)
 
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
 
         minimal = float('inf')
         left = 0
-        total = 0
+        windowSum = 0
 
         for right in range(len(nums)):
-            total = total + nums[right]
-            
-            while total >= target:
-                minimal = min(minimal, right - left + 1)
-                total = total - nums[left]
-                left = left + 1
 
-        # return 0 if there is no such subarray
-        # else return the minimal length
+            windowSum += nums[right]
+
+            while windowSum >= target:
+
+                minimal = min(minimal, right - left + 1)
+                windowSum -= nums[left]
+                left += 1
+
         return 0 if minimal == float('inf') else minimal
