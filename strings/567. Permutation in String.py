@@ -15,31 +15,31 @@ Input: s1 = "ab", s2 = "eidboaoo"
 Output: false
 """
 
-#   Sliding Window + Counter Approach
+#   Sliding Window + Counter
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
 
-        if len(s1) > len(s2):   # edge case
-            return False 
+        if len(s1) > len(s2):
+            return False
 
-        left = 0
-        s1_count = Counter(s1)
+        s1Count = Counter(s1)
         window = Counter()
+        left = 0
 
         for right in range(len(s2)):
 
             window[s2[right]] = window[s2[right]] + 1
 
             if right - left + 1 > len(s1):
-                window[s2[left]] = window[s2[left]] - 1
-                if window[s2[left]] == 0: # remove 0 count character
+                window[s2[left]] -= 1
+                if window[s2[left]] == 0:
                     del window[s2[left]]
-
                 left = left + 1
 
-            if window == s1_count:
+            if s1Count == window:
                 return True
+
         return False
     
 #   Another faster method is available using Fixed Sized Array
