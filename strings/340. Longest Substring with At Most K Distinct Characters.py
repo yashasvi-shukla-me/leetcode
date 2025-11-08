@@ -27,27 +27,56 @@ Follow-up:
 Can you solve this in O(n) time?
 """
 
-#   Using Sliding Window
+#   Using Sliding Window + HashMap
 
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
-        if k == 0 or not s:    # if string is empty or k = 0, return 0
+
+        if k ==0 or not s:
             return 0
 
         left = 0
-        longest = 0
+        n = len(s)
         freq = {}
+        maxLen = 0
 
-        for right in range(len(s)):
-            char = s[right]
-            freq[char] = freq.get(char, 0) + 1
+        for right in range(n):
+
+            freq[s[right]] = freq.get(s[right], 0) + 1
 
             while len(freq) > k:
                 freq[s[left]] -= 1
                 if freq[s[left]] == 0:
-                    del freq[s[left]]   # if the freq becomes zero, remove that element
+                    del freq[s[left]]
                 left += 1
 
-            longest = max(longest, right - left + 1)
+            maxLen = max(maxLen, right - left + 1)
 
-        return longest
+        return maxLen
+
+
+#   Sliding Window + defaultdict
+
+from collections import defaultdict
+
+class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+
+        left = 0
+        n = len(s)
+        freq = defaultdict(int)
+        maxLen = 0
+
+        for right in range(n):
+
+            freq[s[right]] += 1
+
+            while len(freq) > k:
+                freq[s[left]] -= 1
+                if freq[s[left]] == 0:
+                    del freq[s[left]]
+                left += 1
+
+            maxLen = max(maxLen, right - left + 1)
+
+        return maxLen
