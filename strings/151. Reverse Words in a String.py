@@ -25,25 +25,11 @@ Output: "example good a"
 Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.
 """
 
-#   Manual Revrese (Simple)
+#   Brute Force Approach
 
 class Solution:
     def reverseWords(self, s: str) -> str:
 
         words = s.strip().split()
-        result = []
-
-        for i in range(len(words)-1,-1,-1):
-            result.append(words[i])  # contains our answer in list format
-
-        dracule = " ".join(result)  # gets the result in string format
-        return dracule
-
-
-#   Pythonic Way
-
-class Solution:
-    def reverseWords(self, s: str) -> str:
-
-        words = s.strip().split()
-        return " ".join(reversed(words))
+        reverse = words[::-1]
+        return " ".join(reverse)
