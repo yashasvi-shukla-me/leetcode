@@ -16,54 +16,41 @@ Constraints:
 s and t consist of lowercase English letters.
 """
 
-#   Brute Force
+#   We can solve using Counter and sorted (takes O(n) space)
+#   Using HashMap 
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        return sorted(s) == sorted(t)
 
-
-# Using Counter
-
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        return Counter(s) == Counter(t)
-
-
-#   Using HashMap
-
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        
         if len(s) != len(t):
             return False
 
-        s_count = {}
-        t_count = {}
+        sCount = {}
+        tCount = {}
 
         for ch in s:
-            s_count[ch] = s_count.get(ch, 0) + 1
-
+            sCount[ch] = sCount.get(ch, 0) + 1
         for ch in t:
-            t_count[ch] = t_count.get(ch, 0) + 1
+            tCount[ch] = tCount.get(ch, 0) + 1
+        
+        return sCount == tCount
 
-        return s_count == t_count
 
-
-#   Using Fixed Array (Optimal)
+#   Using Optimized HashMap
+#   as given s and t consist of lowercase English letters
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        
+
         if len(s) != len(t):
             return False
 
-        count = [0] * 26  # creates an array of 26 zeros
+        arr = [0] * 26
 
         for ch in s:
-            count[ord(ch) - ord('a')] += 1  # increment that position in count
+            arr[ord(ch) - ord('a')] += 1
 
         for ch in t:
-            count[ord(ch) - ord('a')] -= 1  # decrement that position in count
+            arr[ord(ch) - ord('a')] -= 1
 
-        return all(x == 0 for x in count) # checks if every value in count is 0
+        return all(x == 0 for x in arr)
