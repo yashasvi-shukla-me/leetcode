@@ -13,27 +13,26 @@ Input: s = "cbbd"
 Output: "bb"
 """
 
-#   Optimal Approach
+#   Using Two Pointers
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
 
-        def expand(left, right):
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                left = left - 1
-                right = right + 1
-            return s[left + 1:right]
+        def expand(l, r):
+
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l = l - 1
+                r = r + 1
+
+            return s[l + 1 : r]
 
         longest = ""
+
         for i in range(len(s)):
 
             odd = expand(i, i)
+            even = expand(i, i + 1)
 
-            even = expand(i, i +1)
-
-            if len(odd) > len(longest):
-                longest = odd
-            if len(even) > len(longest):
-                longest = even
+            longest = max(longest, odd, even, key=len)
 
         return longest
