@@ -28,16 +28,18 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 class Solution:
     def isPalindrome(self, s: str) -> bool:
 
-        s = s.lower()
         result = ""
+        s = s.lower()
 
         for i in s:
+
             if i.isalnum():
                 result = result + i
+
         return result == result[::-1]
 
 
-#   Using Two Pointers
+#   Two Pointers Approach
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -46,13 +48,16 @@ class Solution:
         right = len(s) - 1
 
         while left < right:
+
             while left < right and not s[left].isalnum():
                 left = left + 1
             while left < right and not s[right].isalnum():
                 right = right - 1
-            
+
             if s[left].lower() != s[right].lower():
                 return False
+
             left = left + 1
             right = right - 1
+
         return True
