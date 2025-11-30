@@ -23,7 +23,7 @@ Input: strs = ["a"]
 Output: [["a"]]
 """
 
-#   Using Sorting - HashMap
+#   Using Sorting and HashMap
 
 from collections import defaultdict
 
@@ -34,12 +34,12 @@ class Solution:
 
         for word in strs:
             key = "".join(sorted(word))
-            groups[key].append(word) 
+            groups[key].append(word)
 
         return list(groups.values())
 
 
-#   Using Count - HashMap
+#   Using Character Count and HashMap
 
 from collections import defaultdict
 
@@ -50,9 +50,11 @@ class Solution:
 
         for word in strs:
             count = [0] * 26
+            
             for ch in word:
                 count[ord(ch) - ord('a')] += 1
-            key = tuple(count)
+            key = tuple(count)  # as list is unhashable
+                                # all anagrams produce same tuple
 
             groups[key].append(word)
 
