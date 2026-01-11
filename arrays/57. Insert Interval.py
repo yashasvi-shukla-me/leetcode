@@ -19,29 +19,49 @@ Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 """
 
-#   Optimal method
-#   Without sorting as it is already sorted
+# Using merge interval logic
+# Complexity O(nlogn)
 
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
 
-        res = []
+        merged = []
+        intervals.append(newInterval)
+        intervals.sort(key = lambda x : x[0])
+
+        for start, end in intervals:
+
+            if not merged or start > merged[-1][1]:
+                merged.append([start, end])
+            else:
+                merged[-1][1] = max(merged[-1][1], end)
+        
+        return merged
+
+
+# Optimal Approach
+# O(n)
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+
+        final = []
         i = 0
         n = len(intervals)
 
-        while i < n and intervals[i][1] < newInterval[0]: # no overlapping
-            res.append(intervals[i])
+        while i < n and intervals[i][1] < newInterval[0]: # just before overlapping
+            final.append(intervals[i])
             i = i + 1
 
-        while i < n and intervals[i][0] <= newInterval[1]: # overlapping
+        while i < n and intervals[i][0] <= newInterval[1]: # merge overlapping
             newInterval[0] = min(newInterval[0], intervals[i][0])
             newInterval[1] = max(newInterval[1], intervals[i][1])
             i = i + 1
 
-        res.append(newInterval)
+        final.append(newInterval)
 
-        while i < n: # adding remaining
-            res.append(intervals[i])
+        while i < n: # left 
+            final.append(intervals[i])
             i = i + 1
         
-        return res
+        return final
