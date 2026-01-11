@@ -15,8 +15,11 @@ Output: -1
 Explanation: "leeto" did not occur in "leetcode", so we return -1.
 """
 
-#   Using Python built-in
+# using built-in function
 
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
+
         return haystack.find(needle)
+
+# We can use Knuth Morris Pratt (KMP)
