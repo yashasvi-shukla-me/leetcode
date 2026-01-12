@@ -33,8 +33,8 @@ Explanation: The balloons can be burst by 2 arrows:
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
 
-        points.sort(key = lambda x : x[1])
-        arrows = 1
+        points.sort(key = lambda x : x [1])
+        arrows = 1 # because one is already shot at last_arrow
         last_arrow = points[0][1]
 
         for start, end in points:
