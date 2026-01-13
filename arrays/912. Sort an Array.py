@@ -16,42 +16,35 @@ Output: [0,0,1,1,2,5]
 Explanation: Note that the values of nums are not necessarily unique.
 """
 
-#   Merge Sort (Optimal)
+# Merge Sort using recursion
 
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
 
-        def mergeSort(arr):
+        if len(nums) <= 1:
+            return nums
 
-            if len(arr) <= 1: # already sorted, as it has 0 or 1 element
-                return arr
+        mid = len(nums) // 2
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
 
-            mid = len(arr) // 2
+        return self.merge(left, right)
 
-            left = mergeSort(arr[:mid])
-            right = mergeSort(arr[mid:])
+    def merge(self, left, right):
 
-            return merge(left, right)
+        result = []
+        i = j = 0
 
-        def merge(left, right):
+        while i < len(left) and j < len(right):
 
-            i = j = 0
-            merged = []
+            if left[i] <= right[j]:
+                result.append(left[i])
+                i = i + 1
+            else:
+                result.append(right[j])
+                j = j + 1
 
-            while i < len(left) and j < len(right):
-                if left[i] < right[j]:
-                    merged.append(left[i])
-                    i = i + 1
-                else:
-                    merged.append(right[j])
-                    j = j + 1
+        result.extend(left[i:])
+        result.extend(right[j:])
 
-            merged.extend(left[i:])
-            merged.extend(right[j:])
-
-            return merged
-
-        return mergeSort(nums)
-    
-#   Counting Sort is faster
-#   applicable only because we have a constraint in this problem
+        return result
