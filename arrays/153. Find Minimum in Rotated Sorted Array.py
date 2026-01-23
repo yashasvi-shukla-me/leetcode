@@ -28,21 +28,27 @@ Output: 11
 Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 """
 
-#   Modified Binary Search
+# Using other methods will take O(n) time
+# but we require O(logn) time
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        return min(nums)
 
+
+# Uisng binary Search (modified)
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
         left = 0
         right = len(nums) - 1
 
         while left < right:
-
             mid = (left + right) // 2
 
-            if nums[mid] > nums[right]:
+            if nums[mid] > nums[right]: # go right side
                 left = mid + 1
             else:
                 right = mid
 
-        return nums[left]
+        return nums[left] # nums[right] is also correct
