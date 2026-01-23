@@ -25,7 +25,8 @@ class Solution:
         return nums[k-1]
 
 
-#   Using Min Heap
+# Using sorting is very easy, but we have to solve without sorting
+# Using Heaps
 
 import heapq
 
@@ -35,12 +36,59 @@ class Solution:
         heap = []
 
         for num in nums:
+
             heapq.heappush(heap, num)
+
             if len(heap) > k:
                 heapq.heappop(heap)
-                
+
         return heap[0]
-    
+
+
+
+# Using QuickSelect
+# we won't need sorting
+# Complexity O(n)
+
+# it is faster in theory but may give TLE in python as it uses different partitioning scheme
+
+import random
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+
+        target = len(nums) - k # index of where our kth largest will occur
+
+        def quickselect(left, right):
+
+            if left == right:
+                return nums[right]
+
+            pivot_index = random.randint(left, right)
+            pivot = nums[pivot_index]
+
+            # move the pivot to end
+            nums[pivot_index], nums[right] = nums[right], nums[pivot_index]
+            store_index = left
+
+            for i in range(left, right):
+                if nums[i] < pivot:
+                    nums[store_index], nums[i] = nums[i], nums[store_index]
+                    store_index = store_index + 1
+
+            nums[store_index], nums[right] = nums[right], nums[store_index]
+
+            if store_index == target:
+                return nums[target]
+
+            elif store_index < target:
+                return quickselect(store_index + 1, right)
+
+            else:
+                return quickselect(left, store_index - 1)
+
+        return quickselect(0, len(nums) - 1)
+
 
 #   Using Quickselect (Optimal)
 
