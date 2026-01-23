@@ -33,6 +33,17 @@ class Solution:
             if nums[i] == target:
                 return i
         return -1
+    
+
+# Using try and except block
+# but this takes O(n) time, we want O(logn)
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        try:
+            return (nums.index(target))
+        except ValueError:
+            return -1
 
 
 #   Binary Search
@@ -66,18 +77,23 @@ class Solution:
         right = len(nums) - 1
 
         while left <= right:
+
             mid = (left + right) // 2
 
             if nums[mid] == target:
                 return mid
 
+            # left half is sorted
             if nums[left] <= nums[mid]:
+
                 if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
                     left = mid + 1
 
+            # right half is sorted
             else:
+
                 if nums[mid] < target <= nums[right]:
                     left = mid + 1
                 else:
