@@ -14,45 +14,22 @@ Input: nums = [0]
 Output: [[],[0]]
 """
 
-#   Brute Force using Bitmasking
+# Using Backtracking
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
 
-        n = len(nums)
-        res = []
-        
-        for mask in range(1 << n):  
-            subset = []
+        result = []
+        path = []
 
-            for j in range(n):
-                if mask & (1 << j):
-                    subset.append(nums[j])
-            res.append(subset)
-        
-        return res
-    
-    
-#   Using Backtracking
+        def backtrack(start):
 
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+            result.append(path[:])
 
-        res = []
-        subset = []
-
-        def backtrack(i):
-            if i >= len(nums):
-                res.append(subset[:])
-                return 
-
-            # to imclude the element
-            subset.append(nums[i])
-            backtrack(i + 1)
-
-            # NOT include the element
-            subset.pop()
-            backtrack(i + 1)
+            for i in range(start, len(nums)):
+                path.append(nums[i])
+                backtrack(i + 1)
+                path.pop()
 
         backtrack(0)
-        return res
+        return result
