@@ -13,31 +13,26 @@ Input: nums = [0]
 Output: [[],[0]]
 """
 
-#   Using Backtracking
+# Using Backtracking
 
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
 
-        res = []
-        subset = []
         nums.sort()
+        path = []
+        result = []
 
-        def backtrack(i):
-            if i == len(nums):
-                res.append(subset[:])
-                return
+        def backtrack(start):
+            result.append(path[:])
 
-            # include the element
-            subset.append(nums[i])
-            backtrack(i + 1)
-            subset.pop()
+            for i in range(start, len(nums)):
 
-            #   skipping duplicates
-            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
-                i = i + 1
+                if i > start and nums[i] == nums[i - 1]:
+                    continue
 
-            # NOT include element
-            backtrack(i + 1)
+                path.append(nums[i])
+                backtrack(i + 1)
+                path.pop()
 
         backtrack(0)
-        return res
+        return result
