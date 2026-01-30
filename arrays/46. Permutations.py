@@ -22,7 +22,7 @@ Constraints:
 All the integers of nums are unique.
 """
 
-#   Using itertools library
+# Using itertools library
 
 import itertools
 
@@ -30,30 +30,29 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         return list(itertools.permutations(nums))
 
-
-#   Backtracking Approach
+# Using backtracking
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-
-        res = []
+        result = []
         path = []
         used = [False] * len(nums)
 
         def backtrack():
+
             if len(path) == len(nums):
-                res.append(path[:])
-                return 
+                result.append(path[:])
+                return
 
             for i in range(len(nums)):
-                if not used[i]:
-                    used[i] = True
-                    path.append(nums[i])
+                if used[i] == True:
+                    continue
 
-                    backtrack()
+                used[i] = True
+                path.append(nums[i])
+                backtrack()
+                path.pop()
+                used[i] = False
 
-                    path.pop()
-                    used[i] = False
-        
         backtrack()
-        return res
+        return result
