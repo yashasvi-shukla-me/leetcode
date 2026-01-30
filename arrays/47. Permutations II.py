@@ -15,34 +15,34 @@ Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 """
 
-#   Backtracking approach
+# Using Backtracking
 
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
 
-        res = []
+        result = []
         path = []
-        used = [False] * len(nums)
         nums.sort()
+        used = [False] * len(nums)
 
         def backtrack():
             if len(path) == len(nums):
-                res.append(path[:])
+                result.append(path[:])
                 return
 
             for i in range(len(nums)):
                 if used[i]:
                     continue
 
-                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                if i > 0 and nums[i] == nums[i - 1] and used[i - 1] == False:
                     continue
 
                 used[i] = True
                 path.append(nums[i])
                 backtrack()
-
                 path.pop()
                 used[i] = False
 
         backtrack()
-        return res
+        return result
+        
