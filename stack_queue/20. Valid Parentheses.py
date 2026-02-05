@@ -46,22 +46,26 @@ class Solution:
         return False
     
 
-#   Stack solution
+#   Using stack data structure
 
 class Solution:
     def isValid(self, s: str) -> bool:
 
-        brackets = { ")": "(", "]": "[", "}": "{"}
         stack = []
+        match = {
+            ")": "(",
+            "]":"[",
+            "}":"{"
+        }
 
-        for i in s:
-            if i in brackets:
-                if stack and stack[-1] == brackets[i]:
-                    stack.pop()
-                else:
-                    return False
-
+        for ch in s:
+            if ch not in match:
+                stack.append(ch)
             else:
-                stack.append(i)
+                if not stack:
+                    return False
+                if stack[-1] != match[ch]:
+                    return False
+                stack.pop()
 
-        return True if not stack else False
+        return not stack # return True if stack is empty i.e. string was valid
